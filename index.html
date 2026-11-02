@@ -1,0 +1,525 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LXSH — Vintage Thrift</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f2eddf;
+  color: #30291f;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 22px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #c9bdab;
+}
+
+.logo {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #30291f;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.announcement {
+  text-align: center;
+  background: #554a37;
+  color: #f2eddf;
+  padding: 11px;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.hero {
+  padding: 75px 7%;
+  min-height: 430px;
+  background: #d9cfbb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero small {
+  letter-spacing: 4px;
+  font-size: 11px;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(48px, 10vw, 85px);
+  font-weight: normal;
+  line-height: 1;
+  margin: 22px 0;
+}
+
+.hero p {
+  max-width: 350px;
+  line-height: 1.7;
+  color: #625847;
+  font-size: 14px;
+}
+
+.btn {
+  display: inline-block;
+  width: fit-content;
+  padding: 15px 25px;
+  margin-top: 25px;
+  background: #493e2e;
+  color: white;
+  border: none;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.section {
+  padding: 55px 6%;
+}
+
+.section-heading {
+  font-family: Georgia, serif;
+  font-size: 35px;
+  font-weight: normal;
+}
+
+.subtitle {
+  color: #837762;
+  font-size: 13px;
+  margin: 10px 0 25px;
+}
+
+.filters {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  background: transparent;
+  border: 1px solid #a99c85;
+  padding: 10px 15px;
+  color: #30291f;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.filters button.active {
+  background: #493e2e;
+  color: white;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 13px;
+}
+
+.product img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: #ded5c4;
+}
+
+.product h3 {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  margin-top: 12px;
+}
+
+.product .condition {
+  color: #81735d;
+  font-size: 10px;
+  margin-top: 6px;
+}
+
+.product .price {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 9px 0;
+}
+
+.product button {
+  width: 100%;
+  padding: 12px;
+  background: #493e2e;
+  border: none;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.product button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.story {
+  background: #ded5c4;
+  padding: 55px 8%;
+  text-align: center;
+}
+
+.story h2 {
+  font-family: Georgia, serif;
+  font-size: 34px;
+  font-weight: normal;
+}
+
+.story p {
+  max-width: 500px;
+  margin: 20px auto 0;
+  line-height: 1.8;
+  font-size: 13px;
+  color: #625847;
+}
+
+.cart {
+  padding: 40px 6%;
+}
+
+.cart h2 {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #c9bdab;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.cart-item button {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.total {
+  font-size: 19px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+footer {
+  background: #30291f;
+  color: #f2eddf;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+footer p {
+  font-size: 11px;
+  margin-top: 12px;
+  color: #c5b99f;
+}
+
+@media(min-width:700px) {
+  .products {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+  }
+
+  .hero {
+    min-height: 550px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+  CURATED PRE-LOVED FINDS • ONE PIECE, ONE STORY
+</div>
+
+<header>
+  <div class="logo">LXSH.</div>
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#shop">SHOP</a>
+    <a href="#cart">BAG (<span id="count">0</span>)</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <small>THE VINTAGE COLLECTION — EST. 2026</small>
+
+  <h1>OLD SOUL.<br>NEW STYLE.</h1>
+
+  <p>
+    Discover unique pre-loved pieces.
+    Better finds, timeless style and a second life
+    for good clothing.
+  </p>
+
+  <a href="#shop" class="btn">EXPLORE THE DROP →</a>
+</section>
+
+<section class="section" id="shop">
+
+  <h2 class="section-heading">THE THRIFT EDIT</h2>
+
+  <p class="subtitle">
+    Handpicked pieces. Limited availability.
+  </p>
+
+  <div class="filters">
+    <button class="active"
+    onclick="filterProducts('All',this)">ALL</button>
+
+    <button onclick="filterProducts('T-Shirts',this)">
+    TEES</button>
+
+    <button onclick="filterProducts('Shirts',this)">
+    SHIRTS</button>
+
+    <button onclick="filterProducts('Bottoms',this)">
+    BOTTOMS</button>
+  </div>
+
+  <div class="products" id="products"></div>
+
+</section>
+
+<section class="story">
+  <h2>Not New. Just New To You.</h2>
+
+  <p>
+    At LXSH, we believe great style deserves
+    another life. We curate pre-loved clothing
+    and give unique pieces a chance to be loved again.
+  </p>
+</section>
+
+<section class="cart" id="cart">
+
+  <h2>Your Selection</h2>
+
+  <div id="cartItems">Your bag is empty.</div>
+
+  <div class="total">
+    Total: ₹<span id="total">0</span>
+  </div>
+
+  <button class="btn" onclick="checkout()">
+    ORDER ON WHATSAPP
+  </button>
+
+</section>
+
+<footer>
+  <div class="logo">LXSH.</div>
+  <p>NOT NEW. JUST NEW TO YOU.</p>
+  <p>VINTAGE • RELOVED • RECURATED</p>
+  <p>© 2026 LXSH. ALL RIGHTS RESERVED.</p>
+</footer>
+
+<script>
+
+const products = [
+  {
+    id: 1,
+    name: "Classic Graphic Tee",
+    category: "T-Shirts",
+    price: 299,
+    size: "L",
+    condition: "9/10",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",
+    stock: true
+  },
+  {
+    id: 2,
+    name: "Vintage Street Tee",
+    category: "T-Shirts",
+    price: 349,
+    size: "M",
+    condition: "8/10",
+    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600",
+    stock: true
+  },
+  {
+    id: 3,
+    name: "Retro Casual Shirt",
+    category: "Shirts",
+    price: 499,
+    size: "L",
+    condition: "9/10",
+    image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600",
+    stock: true
+  },
+  {
+    id: 4,
+    name: "Classic Denim",
+    category: "Bottoms",
+    price: 199,
+    size: "32",
+    condition: "8/10",
+    image: "images/lxsh001-front.png",
+    stock: true
+  }
+];
+
+let bag = [];
+let currentFilter = "All";
+
+function showProducts() {
+  const area = document.getElementById("products");
+  area.innerHTML = "";
+
+  products
+    .filter(p =>
+      currentFilter === "All" ||
+      p.category === currentFilter
+    )
+    .forEach(p => {
+      area.innerHTML += `
+        <div class="product">
+          <img src="${p.image}" alt="${p.name}">
+
+          <h3>${p.name}</h3>
+
+          <p class="condition">
+            SIZE: ${p.size} • CONDITION: ${p.condition}
+          </p>
+
+          <p class="price">₹${p.price}</p>
+
+          <button
+            ${p.stock ? "" : "disabled"}
+            onclick="addToBag(${p.id})">
+            ${p.stock ? "ADD TO BAG" : "SOLD OUT"}
+          </button>
+        </div>
+      `;
+    });
+}
+
+function filterProducts(category,button) {
+  currentFilter = category;
+
+  document.querySelectorAll(".filters button")
+    .forEach(b => b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  showProducts();
+}
+
+function addToBag(id) {
+  const product = products.find(p => p.id === id);
+
+  if (!product || !product.stock) return;
+
+  if (bag.some(p => p.id === id)) {
+    alert("This unique item is already in your bag.");
+    return;
+  }
+
+  bag.push(product);
+  updateBag();
+}
+
+function removeFromBag(id) {
+  bag = bag.filter(p => p.id !== id);
+  updateBag();
+}
+
+function updateBag() {
+  const area = document.getElementById("cartItems");
+
+  const total = bag.reduce(
+    (sum,p) => sum + p.price, 0
+  );
+
+  document.getElementById("count").textContent = bag.length;
+  document.getElementById("total").textContent = total;
+
+  if (bag.length === 0) {
+    area.textContent = "Your bag is empty.";
+    return;
+  }
+
+  area.innerHTML = bag.map(p => `
+    <div class="cart-item">
+      <span>${p.name} — ₹${p.price}</span>
+      <button onclick="removeFromBag(${p.id})">
+        Remove
+      </button>
+    </div>
+  `).join("");
+}
+
+function checkout() {
+  if (bag.length === 0) {
+    alert("Your bag is empty!");
+    return;
+  }
+
+  const number = "91XXXXXXXXXX";
+
+  const items = bag.map(p =>
+    p.name + " | Size: " + p.size +
+    " | ₹" + p.price
+  ).join("\n");
+
+  const total = bag.reduce(
+    (sum,p) => sum + p.price, 0
+  );
+
+  const message =
+    "Hello LXSH! I want to order:\n\n" +
+    items + "\n\nTotal: ₹" + total;
+
+  if (number.includes("X")) {
+    alert("Store WhatsApp number needs to be configured.");
+    return;
+  }
+
+  window.open(
+    "https://wa.me/" + number +
+    "?text=" + encodeURIComponent(message),
+    "_blank"
+  );
+}
+
+showProducts();
+
+</script>
+
+</body>
+</html>
